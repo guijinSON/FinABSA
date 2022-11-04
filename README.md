@@ -33,6 +33,23 @@ o = absa.run_absa(
                 expenditure and elevated inventories will likely weigh on semiconductor and hardware companies.."
                 )
 pprint.pprint(o)
+
+# {'Alphabet': {'classification_output': 'NEGATIVE',
+#              'logits': {'negative': 0.9970308542251587,
+#                         'neutral': 0.0018199979094788432,
+#                         'positive': 0.0011491376208141446}},
+# 'Apple': {'classification_output': 'NEGATIVE',
+#           'logits': {'negative': 0.9980792999267578,
+#                      'neutral': 0.0013628738233819604,
+#                     'positive': 0.000557745574042201}},
+# 'Meta': {'classification_output': 'NEGATIVE',
+#          'logits': {'negative': 0.9947644472122192,
+#                     'neutral': 0.004664959851652384,
+#                     'positive': 0.0005706017836928368}},
+# 'Microsoft': {'classification_output': 'NEGATIVE',
+#               'logits': {'negative': 0.9938719272613525,
+#                          'neutral': 0.005691188853234053,
+#                          'positive': 0.00043679968803189695}}}
 ```
 
 #### OR
@@ -51,6 +68,8 @@ input_str = "[TGT] stocks dropped 42% while Samsung rallied."
 input = tokenizer(input_str, return_tensors='pt')
 output = model.generate(**input, max_length=20)
 print(tokenizer.decode(output[0]))
+
+# The sentiment for [TGT] in the given sentence is NEGATIVE.
 ```
 
 ## Limitations
