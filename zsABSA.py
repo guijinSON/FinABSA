@@ -40,6 +40,7 @@ class ZS_ABSA():
         input = self.MaskedLM_tok(input_str,return_tensors='pt')
         input_ids = input['input_ids']
         mask_token_idx = torch.where(input_ids==self.MaskedLM_tok.mask_token_id,True,False).squeeze().nonzero().item()
+        sep_token_idx = torch.where(input_ids==self.MaskedLM_tok.sep_token_id,True,False).squeeze().nonzero()[0].item()
 
         output_logits = self.MaskedLM(
                                 input_ids = input_ids.to(self.device),
@@ -49,7 +50,7 @@ class ZS_ABSA():
         input_ids = input_ids.squeeze()
         output = torch.argmax(output_logits,dim=-1).squeeze()
         input_ids[mask_token_idx] = output[mask_token_idx]
-        output_sent = self.MaskedLM_tok.decode(input_ids)
+        output_sent = self.MaskedLM_tok.decode(input_ids[sep_token_idx:])
 
         output_logits = torch.topk(F.softmax(output_logits[-3],dim=0),3,dim=0)
         return {
