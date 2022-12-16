@@ -10,6 +10,9 @@ In this sector, we compare FinABSA againset [FinBERT](https://github.com/ProsusA
 | [TGT] stocks dropped 42% while Samsung rallied.    | FinABSA   |  NEGATIVE       |
 | Tesla stocks dropped 42% while [TGT] rallied.      | FinASBA   |  POSITIVE       |
 
+## Supported Models
+FinABSA is supported in two models, [T5-Large](https://huggingface.co/t5-large) and [DeBERTa-v3-Base](https://huggingface.co/microsoft/deberta-v3-base). T5 was trained using a prompt generation method similar to that of [Aspect Sentiment Quad Prediction as Paraphrase Generation](https://arxiv.org/abs/2110.00796). DeBERTa was trained using a conventional sequence classification objective. We observe that the DeBERTa model achieves a slightly higher accuracy compared to the T5 model. All models are available at [huggingface](https://huggingface.co/amphora).
+
 ## How To Use
 
 ### 1. Install Dependencies
